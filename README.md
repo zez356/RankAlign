@@ -7,8 +7,7 @@
 <sup>1</sup>University of Padova, Italy &nbsp; <sup>2</sup>Harbin Institute of Technology, China &nbsp; <sup>*</sup>Equal contribution
 
 
-[![NeurIPS 2026](https://img.shields.io/badge/NeurIPS-2026-4b44ce.svg)](https://openreview.net/forum?id=ngwv68jt7S)
-[![OpenReview](https://img.shields.io/badge/OpenReview-Paper-8c1b13.svg)](https://openreview.net/forum?id=ngwv68jt7S)
+<!-- [![NeurIPS 2026](https://img.shields.io/badge/NeurIPS-2026-4b44ce.svg)](https://openreview.net/forum?id=ngwv68jt7S) -->
 <!-- [![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/XXXX.XXXXX) -->
 <!-- [![Project Page](https://img.shields.io/badge/Project-Page-grey)](https://PROJECT_PAGE_URL) -->
 [![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?logo=PyTorch&logoColor=white)](https://pytorch.org/)
