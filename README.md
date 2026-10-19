@@ -1,21 +1,25 @@
 # RankAlign: Vision-Language Representation Alignment via Rank Transformation
 
+[**Enzhe Zhao**](https://openreview.net/profile?id=~Enzhe_Zhao1)<sup>1,2*</sup> &nbsp;
+[**Marco Fiorucci**](https://openreview.net/profile?id=~Marco_Fiorucci1)<sup>1*</sup> &nbsp;
+[**Lamberto Ballan**](https://openreview.net/profile?id=~Lamberto_Ballan3)<sup>1</sup>
+
+<sup>1</sup>University of Padova, Italy &nbsp; <sup>2</sup>Harbin Institute of Technology, China &nbsp; <sup>*</sup>Equal contribution
+
+
+[![NeurIPS 2026](https://img.shields.io/badge/NeurIPS-2026-4b44ce.svg)](https://openreview.net/forum?id=ngwv68jt7S)
+[![OpenReview](https://img.shields.io/badge/OpenReview-Paper-8c1b13.svg)](https://openreview.net/forum?id=ngwv68jt7S)
+<!-- [![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/XXXX.XXXXX) -->
+<!-- [![Project Page](https://img.shields.io/badge/Project-Page-grey)](https://PROJECT_PAGE_URL) -->
+[![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?logo=PyTorch&logoColor=white)](https://pytorch.org/)
+
 ## Abstract
 
-The Platonic Representation Hypothesis suggests that vision and language models may converge toward compatible latent
-structures, yet recovering class-level correspondences between unpaired modalities without cross-modal supervision
-remains challenging. Existing relational matching methods compare within-modality similarity kernels directly, although
-the same semantic structure may be represented through different numerical parameterizations across modalities. We
-propose RankAlign, a rank-based normalization strategy for class-level unpaired vision-language matching. RankAlign
-transforms each within-modality similarity kernel into an ordinal relational representation before permutation
-matching, while leaving the correspondence space and matching solver unchanged. The resulting representation is
-invariant to strictly increasing reparameterizations of similarity values while preserving the ordinal structure used
-for matching. We provide exact-recovery and stability guarantees that characterize correspondence recovery under both
-exact and partial ordinal agreement. Experiments across diverse frozen vision and language encoders and multiple
-datasets demonstrate improved and more stable class-level correspondence recovery, including under label corruption
-and domain shift.
+While the Platonic Representation Hypothesis posits that vision and language models converge toward compatible latent geometries, recovering class-level correspondences between unpaired modalities without cross-modal supervision remains remains challenging.
+Existing relational matching methods compare within-modality similarity kernels directly, although the same semantic structure may be represented through different numericalparameterizations across modalities. We propose RankAlign, a rank-based normalization strategy for class-level unpaired vision-language matching.
+RankAlign transforms each within-modality similarity kernel into an ordinal relational representation before permutation matching, while leaving the correspondence space and matching solver unchanged. The resulting representation is invariant to strictly increasing reparameterizations of similarity values while preserving the ordinal structure used for matching. We provide exact-recovery and stability guarantees that characterize correspondence recovery under both exact and partial ordinal agreement. Experiments across diverse frozen vision and language encoders and multiple datasets demonstrate improved and more stable class-level correspondence recovery, including under label corruption and domain shift.
 
-## Installation
+## Environment setup
 
 ```bash
 git clone https://github.com/zez356/RankAlign.git
@@ -45,9 +49,9 @@ The main options can be combined freely, and several values can be given at once
 
 
 
-### Reproducing the paper
+### Reproducing the results
 
-Matching accuracy versus problem size on CIFAR-100 and ImageNet-100:
+Matching accuracy versus problem size on CIFAR-100 and ImageNet-100 (Fig.2):
 
 ```bash
 python -u rankalign/run.py \
