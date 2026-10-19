@@ -7,9 +7,10 @@ from data.benchmarks import load_images
 from data.texts import class_texts
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EMB_ROOT = os.environ.get('RANKALIGN_EMB_ROOT', os.path.join(ROOT, 'embeddings'))
-DATASET_DIR = {'cifar100': 'CIFAR-100', 'imagenet100': 'ImageNet-100'}
+DATASET_DIR = {'cifar100': 'CIFAR-100', 'imagenet100': 'ImageNet-100', 'laion': 'LAION', 'chexpert': 'CheXpert'}
+PRECOMPUTED_ONLY = ('laion', 'chexpert')
 VISION_FILES = {'clip': 'clip.pt', 'siglip': 'siglip.pt', 'siglip2': 'siglip2.pt', 'deit': 'deit.pt', 'dinov2': 'dinov2.pt'}
-LANGUAGE_FILES = {'bge': 'bge.pt', 'e5': 'e5.pt'}
+LANGUAGE_FILES = {'bge': 'bge.pt', 'e5': 'e5.pt', 'mpnet': 'mpnet.pt'}
 
 def dataset_dir(emb_root: str, dataset: str) -> str:
     return os.path.join(emb_root, DATASET_DIR[dataset])
@@ -137,7 +138,7 @@ def generate_vision(datasets, models, emb_root, data_root=None, imagenet_val=Non
             assert V.shape[0] == len(labels)
             torch.save(V.contiguous(), out)
             print(f'  saved {out} {tuple(V.shape)}', flush=True)
-ENCODERS = {'bge': 'BAAI/bge-large-en-v1.5', 'e5': 'intfloat/e5-large-v2'}
+ENCODERS = {'bge': 'BAAI/bge-large-en-v1.5', 'e5': 'intfloat/e5-large-v2', 'mpnet': 'sentence-transformers/all-mpnet-base-v2'}
 QUERY_PREFIX = {'e5': 'query: '}
 
 def class_prototypes(text_emb: torch.Tensor) -> torch.Tensor:
@@ -176,6 +177,11 @@ def ensure_representations(datasets, vision_names, language, emb_root, data_root
         missing_vision = [v for v in vision_names if not os.path.isfile(os.path.join(d, 'vision', VISION_FILES[v]))]
         missing_labels = not os.path.isfile(os.path.join(d, 'labels.pt'))
         missing_language = not os.path.isfile(os.path.join(d, 'language', LANGUAGE_FILES[language]))
+        if ds in PRECOMPUTED_ONLY:
+            missing = [f'vision/{VISION_FILES[v]}' for v in missing_vision] + (['labels.pt'] if missing_labels else []) + ([f'language/{LANGUAGE_FILES[language]}'] if missing_language else [])
+            if missing:
+                raise FileNotFoundError(f"{ds}: precomputed representations required in {d}: {', '.join(missing)}")
+            continue
         if missing_vision or missing_labels:
             print(f"{ds}: generating vision representations {missing_vision or ['labels']}", flush=True)
             generate_vision([ds], missing_vision, emb_root, data_root=data_root, imagenet_val=imagenet_val)

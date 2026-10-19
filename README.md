@@ -14,8 +14,8 @@
 
 ## Abstract
 
-While the Platonic Representation Hypothesis posits that vision and language models converge toward compatible latent geometries, recovering class-level correspondences between unpaired modalities without cross-modal supervision remains remains challenging.
-Existing relational matching methods compare within-modality similarity kernels directly, although the same semantic structure may be represented through different numericalparameterizations across modalities. We propose RankAlign, a rank-based normalization strategy for class-level unpaired vision-language matching.
+While the Platonic Representation Hypothesis posits that vision and language models converge toward compatible latent geometries, recovering class-level correspondences between unpaired modalities without cross-modal supervision remains challenging.
+Existing relational matching methods compare within-modality similarity kernels directly, although the same semantic structure may be represented through different numerical parameterizations across modalities. We propose RankAlign, a rank-based normalization strategy for class-level unpaired vision-language matching.
 RankAlign transforms each within-modality similarity kernel into an ordinal relational representation before permutation matching, while leaving the correspondence space and matching solver unchanged. The resulting representation is invariant to strictly increasing reparameterizations of similarity values while preserving the ordinal structure used for matching. We provide exact-recovery and stability guarantees that characterize correspondence recovery under both exact and partial ordinal agreement. Experiments across diverse frozen vision and language encoders and multiple datasets demonstrate improved and more stable class-level correspondence recovery, including under label corruption and domain shift.
 
 ## Environment setup
@@ -39,7 +39,7 @@ python -u rankalign/run.py --dataset cifar100 --vision dinov2  --sizes 10 --data
 
 The main options can be combined freely, and several values can be given at once:
 
-- `--dataset`: `cifar100`, `imagenet100`
+- `--dataset`: `cifar100`, `imagenet100`, `laion`, `chexpert`
 - `--vision`: `clip`, `siglip`, `siglip2`, `deit`, `dinov2`
 - `--language`: `bge`, `e5`
 - `--solver`: `faq`, `ot`, `fhg` (adapted from [itsamatch](https://github.com/dominik-schnaus/itsamatch))
@@ -58,21 +58,35 @@ python -u rankalign/run.py \
   --vision clip siglip siglip2 deit dinov2 \
   --solver fhg --timelimit 300 \
   --sizes 10 20 30 40 50 60 70 80 90 100 \
-  --seeds 5 \
   --data_root /path/to/data \
   --out results/scalability.csv
 ```
 
 
-
 ## LAION
 
 LAION pseudo-classes are built from the [LAION-Aesthetic square-cleaned](https://huggingface.co/datasets/opendiffusionai/laion2b-en-aesthetic-square-cleaned)
-split (20 classes); 
+split (20 classes). (Table 3):
+
+```bash
+python -u rankalign/run.py \
+  --dataset laion \
+  --vision dinov2 deit clip siglip siglip2 \
+  --sizes 20 \
+  --out results/laion.csv
+```
 
 ##  CheXpert
 CheXpert from the public [CheXpert](https://stanfordmlgroup.github.io/competitions/chexpert/) release
-(12 single-label pathologies). Subset construction is in `data/extra.py`.
+(12 single-label pathologies). Subset construction is in `data/extra.py`. (Table 4):
+
+```bash
+python -u rankalign/run.py \ 
+  --dataset chexpert \
+  --vision deit dinov2 clip siglip siglip2 \ 
+  --sizes 12
+  --out results/chexpert.csv
+```
 
 ## Citation
 
