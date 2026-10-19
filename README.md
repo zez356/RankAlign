@@ -81,10 +81,10 @@ CheXpert from the public [CheXpert](https://stanfordmlgroup.github.io/competitio
 (12 single-label pathologies). Subset construction is in `data/extra.py`. (Table 4):
 
 ```bash
-python -u rankalign/run.py \ 
+python -u rankalign/run.py \
   --dataset chexpert \
-  --vision deit dinov2 clip siglip siglip2 \ 
-  --sizes 12
+  --vision deit dinov2 clip siglip siglip2 \
+  --sizes 12 \
   --out results/chexpert.csv
 ```
 
@@ -97,8 +97,7 @@ If you find this work useful, please cite our paper:
   title     = {RankAlign: Vision-Language Representation Alignment via Rank Transformation},
   author    = {Zhao, Enzhe and Fiorucci, Marco and Ballan, Lamberto},
   booktitle = {The Fortieth Annual Conference on Neural Information Processing Systems},
-  year      = {2026},
-  url       = {https://openreview.net/forum?id=ngwv68jt7S}
+  year      = {2026}
 }
 ```
 
