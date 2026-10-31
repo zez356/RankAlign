@@ -1,6 +1,6 @@
 # RankAlign: Vision-Language Representation Alignment via Rank Transformation
 
-[**Enzhe Zhao**](https://openreview.net/profile?id=~Enzhe_Zhao1)<sup>1,2*</sup> &nbsp;
+[**Enzhe Zhao**](https://openreview.net/profile?id=~Enzhe_Zhao1)<sup>2*</sup> &nbsp;
 [**Marco Fiorucci**](https://openreview.net/profile?id=~Marco_Fiorucci1)<sup>1*</sup> &nbsp;
 [**Lamberto Ballan**](https://openreview.net/profile?id=~Lamberto_Ballan3)<sup>1</sup>
 
