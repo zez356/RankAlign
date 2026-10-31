@@ -88,6 +88,20 @@ python -u rankalign/run.py \
   --out results/chexpert.csv
 ```
 
+
+##  Label corruption
+Robustness to visual-side label corruption with N = 100 (Table 2):
+
+```bash
+python -u rankalign/corruption.py \
+  --dataset cifar100 \
+  --vision clip \
+  --rates 0 0.1 0.2 0.3 0.4 0.5 \
+  --seeds 10 \
+  --data_root /path/to/data \
+  --out results/label_corruption.csv
+```
+
 ## Citation
 
 If you find this work useful, please cite our paper:
